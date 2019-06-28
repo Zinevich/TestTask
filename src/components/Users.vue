@@ -39,18 +39,7 @@
                 </template>
             </ElTableColumn>
         </ElTable>
-        <el-dialog title="Edit user" :visible.sync="editDialogVisible">
-<!--            <el-form :model="form">-->
-<!--                <el-form-item label="Promotion name" :label-width="formLabelWidth">-->
-<!--                    <el-input v-model="form.name" autocomplete="off"></el-input>-->
-<!--                </el-form-item>-->
-<!--                <el-form-item label="Zones" :label-width="formLabelWidth">-->
-<!--                    <el-select v-model="form.region" placeholder="Please select a zone">-->
-<!--                        <el-option label="Zone No.1" value="shanghai"></el-option>-->
-<!--                        <el-option label="Zone No.2" value="beijing"></el-option>-->
-<!--                    </el-select>-->
-<!--                </el-form-item>-->
-<!--            </el-form>-->
+        <ElDialog title="Edit user" :visible.sync="editDialogVisible">
             <ElForm
                     ref="form"
                     :model="editDialogForm"
@@ -72,9 +61,9 @@
             </ElForm>
             <span slot="footer" class="dialog-footer">
                 <ElButton @click="editDialogVisible = false">Cancel</ElButton>
-                <el-button type="primary" @click="submitEdit">Confirm</el-button>
-  </span>
-        </el-dialog>
+                <ElButton type="primary" @click="submitEdit">Confirm</ElButton>
+            </span>
+        </ElDialog>
     </div>
 
 </template>
@@ -94,7 +83,6 @@ export default {
               email: '',
           },
           formLabelWidth: '120px',
-
       }
     },
     computed: {
@@ -104,7 +92,6 @@ export default {
     methods: {
         deleteRow(scope) {
             this.$store.commit('deleteItemTableData', scope.$index)
-
         },
         openEditDialog(scope) {
             this.editDialogForm = scope.row;
@@ -114,7 +101,6 @@ export default {
         submitEdit() {
             this.$store.commit('editItemTableData', {id: this.editDialogFormIndex, value: this.editDialogForm} )
             this.editDialogVisible = false;
-
         }
     },
 

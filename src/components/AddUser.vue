@@ -23,12 +23,12 @@
                     <router-link :to="{name: 'users'}"><ElButton>Cancel</ElButton></router-link>
                 </ElFormItem>
             </ElForm>
-        <el-input
+        <ElInput
                 type="textarea"
                 :rows="2"
                 placeholder="Please input"
                 v-model="json">
-        </el-input>
+        </ElInput>
         <ElButton
                 @click="parseJson"
         >Import</ElButton>
@@ -55,14 +55,12 @@
         watch: {},
         methods: {
             onSubmit() {
-
                 this.$store.commit('addItemToTableData' ,this.form);
                 this.$router.push({name: 'users'})
             },
             parseJson() {
                 var data = JSON.parse(this.json);
                 data.forEach(function (item) {
-                    // console.log(item)
                     this.$store.commit('addItemToTableData', item)
                 }.bind(this));
                 this.$router.push({name: 'users'})

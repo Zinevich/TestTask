@@ -2,18 +2,17 @@
   <div id="app">
 <!--    <img src="./assets/logo.png">-->
 
-      <router-link :to="{name: 'adduser'}"><el-button>Add user</el-button></router-link>
-      <router-link :to="{name: 'users'}"><el-button>Index</el-button></router-link>
+      <router-link :to="{name: 'adduser'}"><ElButton>Add user</ElButton></router-link>
+      
+      <router-link :to="{name: 'users'}"><ElButton>Index</ElButton></router-link>
 
-<!--    <PageTwo ref="PageTwo"/>-->
       <router-view></router-view>
   </div>
 
 </template>
 
 <script>
-// import PageOne from './components/PageOne'
-// import PageTwo from './components/PageTwo'
+
 
 export default {
   name: 'app',
@@ -33,4 +32,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+    ElButton {
+
+    }
 </style>
