@@ -28,10 +28,12 @@
             <ElTableColumn align="right">
                 <template slot-scope="scope">
                     <ElButton
+                            plain="true"
                             size="mini"
                             @click="openEditDialog(scope)"
                     >Edit</ElButton>
                     <ElButton
+                            plain="true"
                             size="mini"
                             type="danger"
                             @click="deleteRow(scope)"
@@ -60,8 +62,8 @@
 
             </ElForm>
             <span slot="footer" class="dialog-footer">
-                <ElButton @click="editDialogVisible = false">Cancel</ElButton>
-                <ElButton type="primary" @click="submitEdit">Confirm</ElButton>
+                <ElButton plain="true" type="danger" @click="editDialogVisible = false">Cancel</ElButton>
+                <ElButton plain="true" type="primary" @click="submitEdit">Confirm</ElButton>
             </span>
         </ElDialog>
     </div>
@@ -91,7 +93,8 @@ export default {
     watch: {},
     methods: {
         deleteRow(scope) {
-            this.$store.commit('deleteItemTableData', scope.$index)
+            this.$store.commit('deleteItemTableData', scope.$index);
+            this.$message.error('You have deleted a user.');
         },
         openEditDialog(scope) {
             this.editDialogForm = scope.row;

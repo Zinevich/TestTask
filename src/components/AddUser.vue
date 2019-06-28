@@ -19,19 +19,22 @@
                     <ElInput v-model="form.email"></ElInput>
                 </ElFormItem>
                 <ElFormItem>
-                    <ElButton type="primary" @click="onSubmit">Create</ElButton>
-                    <router-link :to="{name: 'users'}"><ElButton>Cancel</ElButton></router-link>
+                    <ElButton :plain="true" type="primary" @click="onSubmit" style="margin-right: 1em;">Create</ElButton>
+                    <router-link :to="{name: 'users'}"><ElButton type="danger" plain="true">Cancel</ElButton></router-link>
                 </ElFormItem>
             </ElForm>
-        <ElInput
-                type="textarea"
-                :rows="2"
-                placeholder="Please input"
-                v-model="json">
-        </ElInput>
-        <ElButton
-                @click="parseJson"
-        >Import</ElButton>
+        <div class="json_inp">
+            <ElInput
+                    type="textarea"
+                    :rows="2"
+                    placeholder="Please input"
+                    v-model="json">
+            </ElInput>
+            <ElButton
+                    @click="parseJson"
+            >Import</ElButton>
+        </div>
+
 <!--        <router-view></router-view>-->
     </div>
 
@@ -56,7 +59,11 @@
         methods: {
             onSubmit() {
                 this.$store.commit('addItemToTableData' ,this.form);
-                this.$router.push({name: 'users'})
+                this.$router.push({name: 'users'});
+                this.$message({
+                    message: 'You created a new user.',
+                    type: 'success'
+                });
             },
             parseJson() {
                 var data = JSON.parse(this.json);
@@ -69,5 +76,13 @@
     }
 </script>
 <style>
+    .style {
 
+
+    }
+.json_inp {
+    width: 50em;
+    text-align: center;
+
+}
 </style>
