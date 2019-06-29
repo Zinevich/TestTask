@@ -1,39 +1,60 @@
 <template>
     <div class="style">
         <h1>Add user</h1>
-            <ElForm
-                    ref="form"
-                    :model="form"
-                    label-width="120px"
-            >
-                <ElFormItem label="Name">
-                    <ElInput v-model="form.name"></ElInput>
-                </ElFormItem>
-                <ElFormItem label="Surname">
-                    <ElInput v-model="form.surname"></ElInput>
-                </ElFormItem>
-                <ElFormItem label="Phone">
-                    <ElInput v-model="form.phone"></ElInput>
-                </ElFormItem>
-                <ElFormItem label="Email">
-                    <ElInput v-model="form.email"></ElInput>
-                </ElFormItem>
-                <ElFormItem>
-                    <ElButton :plain="true" type="primary" @click="onSubmit" style="margin-right: 1em;">Create</ElButton>
-                    <router-link :to="{name: 'users'}"><ElButton type="danger" plain="true">Cancel</ElButton></router-link>
-                </ElFormItem>
-            </ElForm>
-        <div class="json_inp">
-            <ElInput
-                    type="textarea"
-                    :rows="2"
-                    placeholder="Please input"
-                    v-model="json">
-            </ElInput>
-            <ElButton
-                    @click="parseJson"
-            >Import</ElButton>
-        </div>
+        <ElRow>
+            <ElCol>
+                <ElForm
+                        ref="form"
+                        :model="form"
+                        label-width="120px"
+                >
+                    <ElFormItem label="Name">
+                        <ElInput v-model="form.name"></ElInput>
+                    </ElFormItem>
+                    <ElFormItem label="Surname">
+                        <ElInput v-model="form.surname"></ElInput>
+                    </ElFormItem>
+                    <ElFormItem label="Phone">
+                        <ElInput v-model="form.phone"></ElInput>
+                    </ElFormItem>
+                    <ElFormItem label="Email">
+                        <ElInput v-model="form.email"></ElInput>
+                    </ElFormItem>
+                    <!--                <ElFormItem style="align-items: revert">-->
+                    <div class="form_button">
+                        <ElButton
+                                :plain="true"
+                                type="primary"
+                                @click="onSubmit"
+                                style="margin-right: 1em;">Create</ElButton>
+                        <router-link :to="{name: 'users'}">
+                            <ElButton
+                                    type="danger"
+                                    :plain="true">Cancel</ElButton>
+                        </router-link>
+                    </div>
+
+                    <!--                </ElFormItem>-->
+                </ElForm>
+            </ElCol>
+            <ElCol>
+                <div class="json_inp">
+                    <ElInput
+                            type="textarea"
+                            :rows="2"
+                            placeholder="Please input"
+                            v-model="json">
+                    </ElInput>
+                    <ElButton
+                            style="margin-top: 1em;"
+                            @click="parseJson"
+                    >Import</ElButton>
+                </div>
+            </ElCol>
+
+        </ElRow>
+
+
 
 <!--        <router-view></router-view>-->
     </div>
@@ -71,6 +92,10 @@
                     this.$store.commit('addItemToTableData', item)
                 }.bind(this));
                 this.$router.push({name: 'users'})
+                this.$message({
+                    message: 'You created a new user.',
+                    type: 'success'
+                });
             }
         },
     }
@@ -80,9 +105,7 @@
 
 
     }
-.json_inp {
-    width: 50em;
-    text-align: center;
-
-}
+    .form_button {
+        margin: 1em;
+    }
 </style>

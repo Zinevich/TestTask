@@ -1,5 +1,6 @@
 <template>
     <div class="hello">
+        <router-link :to="{name: 'adduser'}"><ElButton style="margin-right: 1em;">Add user</ElButton></router-link>
         <ElTable
                 :data="tableData"
                 style="width: 100%;"
@@ -28,12 +29,12 @@
             <ElTableColumn align="right">
                 <template slot-scope="scope">
                     <ElButton
-                            plain="true"
+                            :plain="true"
                             size="mini"
                             @click="openEditDialog(scope)"
                     >Edit</ElButton>
                     <ElButton
-                            plain="true"
+                            :plain="true"
                             size="mini"
                             type="danger"
                             @click="deleteRow(scope)"
@@ -62,8 +63,8 @@
 
             </ElForm>
             <span slot="footer" class="dialog-footer">
-                <ElButton plain="true" type="danger" @click="editDialogVisible = false">Cancel</ElButton>
-                <ElButton plain="true" type="primary" @click="submitEdit">Confirm</ElButton>
+                <ElButton :plain="true" type="danger" @click="editDialogVisible = false">Cancel</ElButton>
+                <ElButton :plain="true" type="primary" @click="submitEdit">Confirm</ElButton>
             </span>
         </ElDialog>
     </div>
